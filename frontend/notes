@@ -1,0 +1,18 @@
+OBIETTIVO:
+
+Creare una todo list con:
+- un input field per inserire nuove cose da fare
+- un elenco di cose da fare, ognuna con un checkbox per dire se è stata già fatta oppure no
+
+GERARCHIA COMPONENTI:
+
+TodoListContainer
+    TextInput
+    TodoList
+        TodoListItem
+
+STATE:
+devo ricordare quali checkbox sono segnate e quali no. Tramite textinput devono essere aggiunte alla lista dei 
+todo nuove voci.
+
+Lo stato riguarderà il testo inserito dall'utente, e i valori delle checkbox.
