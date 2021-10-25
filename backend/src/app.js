@@ -30,7 +30,7 @@ app.post("/items", function (req, res) {
 })
 app.patch("/item/:id", function (req, res) {
   const index = items.findIndex((element) => element.id == req.params.id)
-  items[index].done = !items[index].done
+  items[index].done = req.body.done
   fs.writeFile("./src/items.json", JSON.stringify(items), function (err) {
     if (err) return console.log(err)
   })

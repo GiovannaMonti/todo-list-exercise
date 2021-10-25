@@ -27,8 +27,8 @@ function TodoListContainer() {
       />
       <TodoList
         items={currentList}
-        onCheck={async (id) => {
-          await patchItem(id)
+        onCheck={async (id, prop) => {
+          await patchItem(id, prop)
           setCurrentList(await fetchItems())
         }}
         onDelete={async (id) => {

@@ -16,10 +16,11 @@ const postItem = (item) =>
     data: item,
   })
 
-const patchItem = (id) =>
+const patchItem = (id, prop) =>
   axios({
     method: "patch",
     url: "http://localhost:4000/item/" + id,
+    data: { done: !prop },
   })
 const deleteItem = (id) =>
   axios({
