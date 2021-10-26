@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react"
-import { fetchItems, postItem, patchItem, deleteItem } from ".././api"
+import { getItems, createItem, updateItem, deleteItem } from ".././api"
 import { TodoList } from "./TodoList"
 import { TextInput } from "./TextInput"
 function TodoListContainer() {
   const [currentList, setCurrentList] = useState([])
   console.log(currentList)
   useEffect(() => {
-    async function fetchList() {
-      const todoThings = await fetchItems()
+    async function getList() {
+      const todoThings = await getItems()
       setCurrentList(todoThings)
     }
-    fetchList()
+    getList()
   }, [])
   return (
     <div>
@@ -18,8 +18,8 @@ function TodoListContainer() {
       <TextInput
         onInputSubmit={async (value) => {
           if (value.text !== "") {
-            await postItem(value)
-            setCurrentList(await fetchItems())
+            await createItem(value)
+            setCurrentList(await getItems())
           } else {
             alert("Type something first, dummy")
           }
@@ -27,13 +27,13 @@ function TodoListContainer() {
       />
       <TodoList
         items={currentList}
-        onCheck={async (id, prop) => {
-          await patchItem(id, prop)
-          setCurrentList(await fetchItems())
+        onCheck={async (id, data) => {
+          await updateItem(id, data)
+          setCurrentList(await getItems())
         }}
         onDelete={async (id) => {
           await deleteItem(id)
-          setCurrentList(await fetchItems())
+          setCurrentList(await getItems())
         }}
       />
     </div>
