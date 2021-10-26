@@ -1,6 +1,6 @@
 import axios from "axios"
 
-async function fetchItems() {
+async function getItems() {
   try {
     const response = await fetch("http://localhost:4000/items")
     return await response.json()
@@ -9,22 +9,22 @@ async function fetchItems() {
   }
 }
 
-const postItem = (item) =>
+const createItem = (item) =>
   axios({
     method: "post",
     url: "http://localhost:4000/items",
     data: item,
   })
 
-const patchItem = (id, prop) =>
+const updateItem = (id, data) =>
   axios({
     method: "patch",
     url: "http://localhost:4000/item/" + id,
-    data: { done: !prop },
+    data: data,
   })
 const deleteItem = (id) =>
   axios({
     method: "delete",
     url: "http://localhost:4000/item/" + id,
   })
-export { fetchItems, postItem, patchItem, deleteItem }
+export { getItems, createItem, updateItem, deleteItem }
