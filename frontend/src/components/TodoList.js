@@ -14,7 +14,7 @@ function TodoList({ items, onCheck, onDelete }) {
                 onCheck={() => onCheck(item.id, item)}
                 isChecked={item.done}
                 onDelete={() => {
-                  onDelete()
+                  onDelete(item.id)
                 }}
               />
             )
