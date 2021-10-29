@@ -5,13 +5,18 @@ function getItems() {
 function postItem(body) {
   const items = filesystem.readFile
   const item = body
-  items.push(item)
+  items.unshift(item)
   filesystem.writeFile(items)
 }
 function patchItem(body, params) {
   const items = filesystem.readFile
   const index = items.findIndex((element) => element.id == params.id)
   items[index].done = !body.done
+  if (items[index].done === true) {
+    items.push(items.splice(index, 1)[0])
+  } else {
+    items.unshift(items.splice(index, 1)[0])
+  }
   filesystem.writeFile(items)
 }
 function deleteItem(params) {
