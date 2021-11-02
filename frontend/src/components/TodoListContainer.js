@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react"
 import { getItems, createItem, updateItem, deleteItem } from ".././api"
-import { TodoList } from "./TodoList"
-import { TodoListItemWrapper } from "./TodoListItem"
 import { TextInput } from "./TextInput"
 import { AnimatedDataset } from "react-animated-dataset"
 function TodoListContainer() {
@@ -35,18 +33,6 @@ function TodoListContainer() {
           }
         }}
       />
-      {/* <TodoList
-        items={currentList}
-        onCheck={async (id, data) => {
-          await updateItem(id, data)
-          setCurrentList(await getItems())
-        }}
-        onDelete={async (id) => {
-          await deleteItem(id)
-          setCurrentList(await getItems())
-        }}
-      /> */}
-
       <svg>
         <AnimatedDataset
           dataset={currentList}
