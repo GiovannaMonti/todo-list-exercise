@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react"
 import { getItems, createItem, updateItem, deleteItem } from ".././api"
 import { TextInput } from "./TextInput"
-import { AnimatedDataset } from "react-animated-dataset"
-function TodoListContainer() {
+import * as d3 from "d3"
+/* import { AnimatedDataset } from "react-animated-dataset"
+ */ function TodoListContainer() {
   const [currentList, setCurrentList] = useState([])
   console.log(currentList)
   useEffect(() => {
@@ -12,6 +13,17 @@ function TodoListContainer() {
     }
     getList()
   }, [])
+  useEffect(() => {
+    const svg = d3.select("svg")
+    svg
+      .selectAll("g")
+      .data(currentList)
+      .join(
+        (enter) => enter.append("checkbox").attr("checked", "false"),
+        (update) => update.attr("color", "grey")
+      )
+    svg.node()
+  })
   return (
     <div className="flex-column">
       <h1>IMPORTANT STUFF</h1>
@@ -34,22 +46,14 @@ function TodoListContainer() {
         }}
       />
       <svg>
-        <AnimatedDataset
+        {/*         <AnimatedDataset
           dataset={currentList}
-          tag="text" /* "foreignObject" */
+          tag="text"
           attrs={{
             x: 30,
             y: (_, i) => (i + 1) * 30,
             text: (item) => item.text,
             class: (item) => (item.done ? "done" : "todo"),
-            /*{ <TodoListItemWrapper
-                key={item.id}
-                id={item.id}
-                text={item.text}
-                onCheck={() => {}}
-                isChecked={item.done}
-                onDelete={{}}
-              /> }*/
             opacity: 1,
           }}
           init={{ opacity: 0, x: 0 }}
@@ -64,14 +68,6 @@ function TodoListContainer() {
             cy: (_, i) => (i + 1) * 30 - 8,
             r: 8,
             class: (item) => (item.done ? "checked" : "unchecked"),
-            /*{ <TodoListItemWrapper
-                key={item.id}
-                id={item.id}
-                text={item.text}
-                onCheck={() => {}}
-                isChecked={item.done}
-                onDelete={{}}
-              /> }*/
             opacity: 1,
           }}
           events={{
@@ -102,7 +98,7 @@ function TodoListContainer() {
           init={{ opacity: 0, x: 0 }}
           duration={1000}
           keyFn={(item) => item.id}
-        />
+        /> */}
       </svg>
     </div>
   )
