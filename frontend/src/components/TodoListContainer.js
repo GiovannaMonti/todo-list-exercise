@@ -2,8 +2,8 @@ import { useState, useEffect } from "react"
 import { getItems, createItem, updateItem, deleteItem } from ".././api"
 import { TextInput } from "./TextInput"
 import * as d3 from "d3"
-/* import { AnimatedDataset } from "react-animated-dataset"
- */ function TodoListContainer() {
+import { AnimatedDataset } from "react-animated-dataset"
+function TodoListContainer() {
   const [currentList, setCurrentList] = useState([])
   console.log(currentList)
   useEffect(() => {
@@ -46,7 +46,7 @@ import * as d3 from "d3"
         }}
       />
       <svg>
-        {/*         <AnimatedDataset
+        <AnimatedDataset
           dataset={currentList}
           tag="text"
           attrs={{
@@ -98,7 +98,7 @@ import * as d3 from "d3"
           init={{ opacity: 0, x: 0 }}
           duration={1000}
           keyFn={(item) => item.id}
-        /> */}
+        />
       </svg>
     </div>
   )
